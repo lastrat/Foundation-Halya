@@ -1,0 +1,97 @@
+@extends('front.layouts.app')
+
+@section('title', 'Contact')
+@section('content')
+
+<section class="py-5" style="margin-top: 50px;">
+    <div class="container">
+        <div class="section-title">
+            <h2>Contactez-nous</h2>
+            <p class="text-muted">Nous serions ravis d'échanger avec vous</p>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-5">
+                        <h4 class="mb-4">Envoyez-nous un message</h4>
+                        <form action="{{ route('contact') }}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nom complet *</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Sujet *</label>
+                                <input type="text" class="form-control" id="subject" name="subject" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message *</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom">
+                                <i class="fas fa-paper-plane me-2"></i>Envoyer le message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-5">
+                        <h4 class="mb-4">Nos Coordonnées</h4>
+                        <div class="d-flex mb-4">
+                            <div class="flex-shrink-0">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h5>Adresse</h5>
+                                <p class="text-muted mb-0">123 Avenue de l'Innovation<br>75001 Paris, France</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-4">
+                            <div class="flex-shrink-0">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h5>Téléphone</h5>
+                                <p class="text-muted mb-0">+33 1 23 45 67 89</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-4">
+                            <div class="flex-shrink-0">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h5>Email</h5>
+                                <p class="text-muted mb-0">info@halya.org</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h5>Heures d'ouverture</h5>
+                                <p class="text-muted mb-0">Lundi - Vendredi: 9h00 - 18h00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@endsection

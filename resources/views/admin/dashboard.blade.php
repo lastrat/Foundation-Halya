@@ -1,0 +1,96 @@
+@extends('admin.layouts.app')
+
+@section('title', 'Tableau de Bord')
+@section('page_title', 'Tableau de Bord')
+
+@section('content')
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="card card-stat" style="background: linear-gradient(135deg, #1B4D3E, #2d6a4f);">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <p class="mb-0 opacity-75">Actualités</p>
+                    <h3 class="mb-0">{{ $stats['news'] ?? 0 }}</h3>
+                </div>
+                <div class="icon"><i class="fas fa-newspaper"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stat" style="background: linear-gradient(135deg, #D4AF37, #e8c547);">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <p class="mb-0 opacity-75 text-dark">Programmes</p>
+                    <h3 class="mb-0 text-dark">{{ $stats['programs'] ?? 0 }}</h3>
+                </div>
+                <div class="icon text-dark"><i class="fas fa-project-diagram"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stat" style="background: linear-gradient(135deg, #2C2C2C, #4a4a4a);">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <p class="mb-0 opacity-75">Partenaires</p>
+                    <h3 class="mb-0">{{ $stats['partners'] ?? 0 }}</h3>
+                </div>
+                <div class="icon"><i class="fas fa-handshake"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stat" style="background: linear-gradient(135deg, #e07b39, #f0934a);">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <p class="mb-0 opacity-75">Témoignages</p>
+                    <h3 class="mb-0">{{ $stats['testimonials'] ?? 0 }}</h3>
+                </div>
+                <div class="icon"><i class="fas fa-quote-left"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0"><i class="fas fa-clock me-2 text-primary"></i>Dernières Actualités</h5>
+            </div>
+            <div class="card-body">
+                @forelse($recentNews ?? [] as $item)
+                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                    <div>
+                        <h6 class="mb-0">{{ $item->title }}</h6>
+                        <small class="text-muted">{{ $item->created_at->format('d/m/Y') }}</small>
+                    </div>
+                    <span class="badge badge-custom {{ $item->status == 'published' ? 'badge-success' : 'badge-warning' }}">
+                        {{ ucfirst($item->status) }}
+                    </span>
+                </div>
+                @empty
+                <p class="text-muted text-center py-4">Aucune actualité pour le moment.</p>
+                @endforelse
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0"><i class="fas fa-rocket me-2 text-primary"></i>Actions Rapides</h5>
+            </div>
+            <div class="card-body">
+                <a href="{{ route('admin.news.create') }}" class="btn btn-primary-custom w-100 mb-2">
+                    <i class="fas fa-plus me-2"></i>Nouvelle Actualité
+                </a>
+                <a href="{{ route('admin.programs.create') }}" class="btn btn-primary-custom w-100 mb-2">
+                    <i class="fas fa-plus me-2"></i>Nouveau Programme
+                </a>
+                <a href="{{ route('admin.partners.create') }}" class="btn btn-primary-custom w-100 mb-2">
+                    <i class="fas fa-plus me-2"></i>Nouveau Partenaire
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

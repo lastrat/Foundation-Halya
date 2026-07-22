@@ -1,0 +1,19 @@
+# Laravel .gitignore
+/vendor
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/storage/framework/views/*.php
+/storage/logs/*.log
+/.env
+/.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+npm-debug.log
+yarn-error.log
+/.idea
+/.vscode
+*.swp
+*.swo
+*~
