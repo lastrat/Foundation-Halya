@@ -14,23 +14,42 @@
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-body p-5">
                         <h4 class="mb-4">Envoyez-nous un message</h4>
+
+                        @if(session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        @endif
+
+                        @if(session('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        @endif
+
                         <form action="{{ route('contact') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nom complet *</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                                @error('name')<div class="text-danger mt-1">{{ $message }}</div>@enderror
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email *</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                                @error('email')<div class="text-danger mt-1">{{ $message }}</div>@enderror
                             </div>
                             <div class="mb-3">
                                 <label for="subject" class="form-label">Sujet *</label>
-                                <input type="text" class="form-control" id="subject" name="subject" required>
+                                <input type="text" class="form-control" id="subject" name="subject" value="{{ old('subject') }}" required>
+                                @error('subject')<div class="text-danger mt-1">{{ $message }}</div>@enderror
                             </div>
                             <div class="mb-3">
                                 <label for="message" class="form-label">Message *</label>
-                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                <textarea class="form-control" id="message" name="message" rows="5" required>{{ old('message') }}</textarea>
+                                @error('message')<div class="text-danger mt-1">{{ $message }}</div>@enderror
                             </div>
                             <button type="submit" class="btn btn-primary-custom">
                                 <i class="fas fa-paper-plane me-2"></i>Envoyer le message

@@ -39,6 +39,7 @@ Route::get('/actualites', [NewsController::class, 'index'])->name('news.index');
 Route::get('/actualites/{slug}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/a-propos', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::post('/contact', [PageController::class, 'sendContact'])->name('contact');
 Route::get('/partenaires', [PageController::class, 'partners'])->name('partners');
 
 // Admin routes

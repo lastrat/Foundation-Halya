@@ -162,8 +162,8 @@
             <li>
                 <form action="{{ route('logout') }}" method="POST" class="d-inline">
                     @csrf
-                    <button type="submit" class="btn btn-link text-white p-0 ms-0" style="padding: 0.9rem 1.5rem !important; width: 100%; text-align: left; background: none; border: none;">
-                        <i class="fas fa-sign-out-alt"></i>Déconnexion
+                    <button type="submit" class="btn btn-link text-white p-0 ms-0" style="padding: 0.9rem 1.5rem !important; width: 100%; text-align: left; background: none; border: none; text-decoration: none;">
+                        <i class="fas fa-sign-out-alt"></i>&nbsp;Déconnexion
                     </button>
                 </form>
             </li>

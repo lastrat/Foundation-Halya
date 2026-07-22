@@ -25,6 +25,10 @@
                 <input type="email" class="form-control" id="site_email" name="site_email" value="{{ $settings['site_email'] ?? 'info@halya.org' }}">
             </div>
             <div class="mb-3">
+                <label for="contact_email" class="form-label">Email de réception des messages du formulaire de contact</label>
+                <input type="email" class="form-control" id="contact_email" name="contact_email" value="{{ $settings['contact_email'] ?? 'contact@halyafoundation.com' }}">
+            </div>
+            <div class="mb-3">
                 <label for="site_phone" class="form-label">Téléphone</label>
                 <input type="text" class="form-control" id="site_phone" name="site_phone" value="{{ $settings['site_phone'] ?? '+33 1 23 45 67 89' }}">
             </div>
