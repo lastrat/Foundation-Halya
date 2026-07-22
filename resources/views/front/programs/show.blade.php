@@ -2,7 +2,15 @@
 
 @section('title', $program->title)
 @section('content')
-
+<style>
+    .badge-custom{
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        color: white;
+        background-color: #28a745;
+    }
+</style>
 <section class="py-5" style="margin-top: 100px;">
     <div class="container">
         <nav aria-label="breadcrumb">
@@ -28,7 +36,7 @@
             <div class="col-lg-4">
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Informations</h5>
+                        <h5 class="mb-0 text-white"><i class="fas fa-info-circle me-2"></i>Informations</h5>
                     </div>
                     <div class="card-body">
                         <p><strong>Statut :</strong> <span class="badge badge-custom {{ $program->is_active ? 'badge-success' : 'badge-danger' }}">{{ $program->is_active ? 'Actif' : 'Inactif' }}</span></p>

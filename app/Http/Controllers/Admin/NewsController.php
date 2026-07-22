@@ -43,6 +43,8 @@ class NewsController extends Controller
             $validated['published_at'] = now();
         }
 
+        $validated['is_pinned'] = $request->has('is_pinned');
+
         News::create($validated);
         return redirect()->route('admin.news.index')->with('success', 'Article créé avec succès.');
     }
@@ -73,6 +75,8 @@ class NewsController extends Controller
         if ($validated['status'] === 'published' && empty($validated['published_at'])) {
             $validated['published_at'] = now();
         }
+
+        $validated['is_pinned'] = $request->has('is_pinned');
 
         $news->update($validated);
         return redirect()->route('admin.news.index')->with('success', 'Article mis à jour avec succès.');

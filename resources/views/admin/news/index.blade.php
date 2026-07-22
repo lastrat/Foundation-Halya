@@ -21,13 +21,14 @@
                         <th>Statut</th>
                         <th>Épinglé</th>
                         <th>Publié le</th>
+                        <th>Vues</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($news as $item)
                     <tr>
-                        <td><strong>{{ $item->title }}</strong></td>
+                        <td><strong>{{ Str::limit($item->title, 60) }}</strong></td>
                         <td>{{ $item->author->name ?? 'N/A' }}</td>
                         <td>
                             <span class="badge badge-custom {{ $item->status == 'published' ? 'badge-success' : ($item->status == 'scheduled' ? 'badge-warning' : 'badge-danger') }}">
@@ -42,6 +43,7 @@
                             @endif
                         </td>
                         <td>{{ $item->published_at ? $item->published_at->format('d/m/Y H:i') : '-' }}</td>
+                        <td><span class="badge bg-info text-dark">{{ $item->views()->count() }}</span></td>
                         <td>
                             <div class="btn-group" role="group">
                                 <a href="{{ route('admin.news.edit', $item) }}" class="btn btn-sm btn-primary-custom">
@@ -57,7 +59,7 @@
                         </td>
                     </tr>
                     @empty
-                    <tr><td colspan="6" class="text-center py-4">Aucune actualité trouvée.</td></tr>
+                    <tr><td colspan="7" class="text-center py-4">Aucune actualité trouvée.</td></tr>
                     @endforelse
                 </tbody>
             </table>

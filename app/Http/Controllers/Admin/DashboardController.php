@@ -8,6 +8,7 @@ use App\Models\Partner;
 use App\Models\Program;
 use App\Models\Slider;
 use App\Models\Testimonial;
+use App\Models\Visit;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -23,6 +24,13 @@ class DashboardController extends Controller
 
         $recentNews = News::orderByDesc('created_at')->limit(5)->get();
 
-        return view('admin.dashboard', compact('stats', 'recentNews'));
+        $visits = [
+            'total' => Visit::count(),
+            'today' => Visit::whereDate('visited_at', now()->toDateString())->count(),
+            'week' => Visit::whereBetween('visited_at', [now()->subDays(7), now()])->count(),
+            'month' => Visit::whereBetween('visited_at', [now()->subDays(30), now()])->count(),
+        ];
+
+        return view('admin.dashboard', compact('stats', 'recentNews', 'visits'));
     }
 }

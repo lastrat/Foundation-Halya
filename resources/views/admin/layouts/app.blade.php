@@ -129,7 +129,7 @@
 <body>
     <div class="sidebar">
         <div class="sidebar-brand">
-            <i class="fas fa-leaf"></i> Halya Admin
+             <img src="{{ asset('assets/images/logo.png') }}" height="80" alt=""> 
         </div>
         <ul class="sidebar-nav">
             <li class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
@@ -152,6 +152,9 @@
             </li>
             <li class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.settings.index') }}"><i class="fas fa-cog"></i>Paramètres</a>
+            </li>
+            <li class="{{ request()->routeIs('admin.visits.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.visits.index') }}"><i class="fas fa-chart-bar"></i>Statistiques</a>
             </li>
             <li class="mt-4">
                 <a href="{{ route('home') }}" target="_blank"><i class="fas fa-external-link-alt"></i>Voir le Site</a>

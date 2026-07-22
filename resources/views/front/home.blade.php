@@ -121,9 +121,12 @@
                             <span class="badge bg-warning"><i class="fas fa-thumbtack me-1"></i>Épinglé</span>
                             @endif
                         </div>
-                        <h5 class="card-title" >{{ $article->title }}</h5>
+                        <h5 class="card-title" >{{ Str::limit($article->title, 60) }}</h5>
                         <p class="card-text text-muted">{{ Str::limit($article->excerpt ?: strip_tags($article->content), 120) }}</p>
-                        <a href="{{ route('news.show', $article->slug) }}" class="btn btn-primary-custom">Lire plus</a>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="{{ route('news.show', $article->slug) }}" class="btn btn-primary-custom">Lire plus</a>
+                            <small class="text-muted"><i class="fas fa-eye me-1"></i>{{ $article->views()->count() }}</small>
+                        </div>
                     </div>
                 </div>
             </div>

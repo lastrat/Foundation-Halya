@@ -51,7 +51,7 @@
                             </div>
                             <div class="ms-3">
                                 <h5>Adresse</h5>
-                                <p class="text-muted mb-0">123 Avenue de l'Innovation<br>75001 Paris, France</p>
+                                <p class="text-muted mb-0">{!! nl2br(e($settings['site_address'] ?? '123 Avenue de l\'Innovation, Paris')) !!}</p>
                             </div>
                         </div>
                         <div class="d-flex mb-4">
@@ -62,7 +62,7 @@
                             </div>
                             <div class="ms-3">
                                 <h5>Téléphone</h5>
-                                <p class="text-muted mb-0">+33 1 23 45 67 89</p>
+                                <p class="text-muted mb-0">{{ $settings['site_phone'] ?? '+33 1 23 45 67 89' }}</p>
                             </div>
                         </div>
                         <div class="d-flex mb-4">
@@ -73,7 +73,7 @@
                             </div>
                             <div class="ms-3">
                                 <h5>Email</h5>
-                                <p class="text-muted mb-0">info@halya.org</p>
+                                <p class="text-muted mb-0">{{ $settings['site_email'] ?? 'info@halya.org' }}</p>
                             </div>
                         </div>
                         <div class="d-flex">

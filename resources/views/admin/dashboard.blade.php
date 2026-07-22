@@ -51,7 +51,54 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="card card-stat" style="background: linear-gradient(135deg, #1B4D3E, #2d6a4f);">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <p class="mb-0 opacity-75">Visites</p>
+                    <h3 class="mb-0">{{ $visits['total'] ?? 0 }}</h3>
+                </div>
+                <div class="icon"><i class="fas fa-eye"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stat" style="background: linear-gradient(135deg, #D4AF37, #e8c547);">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <p class="mb-0 opacity-75 text-dark">Visites Aujourd'hui</p>
+                    <h3 class="mb-0 text-dark">{{ $visits['today'] ?? 0 }}</h3>
+                </div>
+                <div class="icon text-dark"><i class="fas fa-calendar-day"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stat" style="background: linear-gradient(135deg, #2C2C2C, #4a4a4a);">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <p class="mb-0 opacity-75">Cette Semaine</p>
+                    <h3 class="mb-0">{{ $visits['week'] ?? 0 }}</h3>
+                </div>
+                <div class="icon"><i class="fas fa-calendar-week"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stat" style="background: linear-gradient(135deg, #e07b39, #f0934a);">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <p class="mb-0 opacity-75">Ce Mois</p>
+                    <h3 class="mb-0">{{ $visits['month'] ?? 0 }}</h3>
+                </div>
+                <div class="icon"><i class="fas fa-calendar-alt"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
     <div class="col-md-8">
         <div class="card border-0 shadow-sm">
             <div class="card-header bg-white py-3">
@@ -61,7 +108,7 @@
                 @forelse($recentNews ?? [] as $item)
                 <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
                     <div>
-                        <h6 class="mb-0">{{ $item->title }}</h6>
+                        <h6 class="mb-0">{{ Str::limit($item->title, 60) }}</h6>
                         <small class="text-muted">{{ $item->created_at->format('d/m/Y') }}</small>
                     </div>
                     <span class="badge badge-custom {{ $item->status == 'published' ? 'badge-success' : 'badge-warning' }}">

@@ -33,6 +33,16 @@
                 <input type="text" class="form-control" id="site_address" name="site_address" value="{{ $settings['site_address'] ?? '' }}">
             </div>
             <hr class="my-4">
+            <h6 class="text-primary mb-3">Footer</h6>
+            <div class="mb-3">
+                <label for="footer_motto" class="form-label">Devise</label>
+                <input type="text" class="form-control" id="footer_motto" name="footer_motto" value="{{ $settings['footer_motto'] ?? 'Élever les femmes, Éduquer, inspirer les générations, transformer les communautés.' }}">
+            </div>
+            <div class="mb-3">
+                <label for="footer_description" class="form-label">Description Footer</label>
+                <textarea class="form-control" id="footer_description" name="footer_description" rows="3">{{ $settings['footer_description'] ?? "Agir ensemble pour un avenir durable. Ensemble, nous construisons un monde meilleur pour les générations futures." }}</textarea>
+            </div>
+            <hr class="my-4">
             <h6 class="text-primary mb-3">Réseaux Sociaux</h6>
             <div class="mb-3">
                 <label for="facebook_url" class="form-label">Facebook</label>

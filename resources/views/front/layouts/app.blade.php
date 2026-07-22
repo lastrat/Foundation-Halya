@@ -193,15 +193,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <div class="footer-brand mb-1">Fondation Halya</div>
-                    <div class="footer-tagline">Rise & Care</div>
-                    <p class="mt-3">Agir ensemble pour un avenir durable. Ensemble, nous construisons un monde meilleur pour les générations futures.</p>
-                    <div class="mt-3">
-                        <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="me-3"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+                 <img src="{{ asset('assets/images/logo.png') }}" height="100" alt="">
+                <div class="footer-brand mb-1">{{ $settings['site_name'] ?? 'Fondation Halya' }}</div>
+                <div class="footer-tagline">Rise & Care</div>
+                <p class="mt-3"><em>{{ $settings['footer_motto'] ?? 'Élever les femmes, Éduquer, inspirer les générations, transformer les communautés.' }}</em></p>
+                <p class="mt-3">{{ $settings['footer_description'] ?? 'Agir ensemble pour un avenir durable. Ensemble, nous construisons un monde meilleur pour les générations futures.' }}</p>
+                <div class="mt-3">
+                    <a href="{{ $settings['facebook_url'] ?? '#' }}" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="{{ $settings['twitter_url'] ?? '#' }}" class="me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="{{ $settings['instagram_url'] ?? '#' }}" class="me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="{{ $settings['linkedin_url'] ?? '#' }}" class="me-3"><i class="fab fa-linkedin-in"></i></a>
+                </div>
                 </div>
                 <div class="col-md-4 mb-4">
                     <h5>Liens Rapides</h5>
@@ -215,15 +217,16 @@
                 <div class="col-md-4 mb-4">
                     <h5>Contact</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>123 Avenue de l'Innovation, Paris</li>
-                        <li class="mb-2"><i class="fas fa-phone me-2"></i>+33 1 23 45 67 89</li>
-                        <li class="mb-2"><i class="fas fa-envelope me-2"></i>info@halya.org</li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>{{ $settings['site_address'] ?? '123 Avenue de l\'Innovation, Paris' }}</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i>{{ $settings['site_phone'] ?? '+33 1 23 45 67 89' }}</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i>{{ $settings['site_email'] ?? 'info@halya.org' }}</li>
                     </ul>
                 </div>
             </div>
             <hr style="border-color: rgba(255,255,255,0.1);">
             <div class="text-center">
                 <p class="mb-0">&copy; {{ date('Y') }} Fondation Halya. Tous droits réservés.</p>
+                <p class="mb-0 mt-2"><a href="https://ghostroar.com" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none;">Développé par Ghostroar Digital</a></p>
             </div>
         </div>
     </footer>

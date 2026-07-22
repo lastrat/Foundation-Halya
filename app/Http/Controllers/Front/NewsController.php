@@ -26,6 +26,20 @@ class NewsController extends Controller
     {
         $article = News::where('slug', $slug)->where('status', 'published')->firstOrFail();
         $settings = Setting::all()->pluck('value', 'key')->toArray();
-        return view('front.news.show', compact('article', 'settings'));
+        $recentArticles = News::where('status', 'published')->where('id', '!=', $article->id)->orderByDesc('published_at')->limit(3)->get();
+
+        $sessionKey = 'article_viewed_' . $article->id;
+
+        if (!session()->has($sessionKey)) {
+            \App\Models\ArticleView::create([
+                'news_id' => $article->id,
+                'ip_address' => request()->ip(),
+                'viewed_at' => now(),
+            ]);
+
+            session()->put($sessionKey, true);
+        }
+
+        return view('front.news.show', compact('article', 'settings', 'recentArticles'));
     }
 }
