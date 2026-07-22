@@ -60,9 +60,7 @@
         <div class="min-h-screen d-flex align-items-center justify-content-center py-5 px-4">
             <div class="w-100" style="max-width: 450px;">
                 <div class="text-center mb-4">
-                    <a href="{{ route('home') }}">
-                        <h2 class="fw-bold"><i class="fas fa-leaf me-2" style="color: var(--secondary);"></i>Fondation Halya</h2>
-                    </a>
+                    
                 </div>
                 <!-- <div class="card auth-card"> -->
                     <!-- <div class="auth-header">
@@ -77,11 +75,11 @@
                         @endif
                     </div>
                 <!-- </div> -->
-                <div class="text-center mt-3">
+                <!-- <div class="text-center mt-3">
                     <a href="{{ route('home') }}" class="text-decoration-none" style="color: var(--primary);">
                         <i class="fas fa-arrow-left me-1"></i>Retour au site
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
 

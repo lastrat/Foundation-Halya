@@ -3,7 +3,9 @@
 @section('content')
 <div class="card auth-card">
     <div class="auth-header">
-        <i class="fas fa-leaf mb-2 d-block"></i>
+        <a href="{{ route('home') }}">
+            <img src="{{ asset('assets/images/logo.png') }}" alt="" height="200">
+        </a>
         <h4 class="mb-0">Connexion</h4>
         <p class="mb-0 mt-2 opacity-75">Connectez-vous à votre espace administrateur</p>
     </div>
