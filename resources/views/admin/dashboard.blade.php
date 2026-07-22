@@ -4,6 +4,7 @@
 @section('page_title', 'Tableau de Bord')
 
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <div class="row g-4 mb-4">
     <div class="col-md-3">
         <div class="card card-stat" style="background: linear-gradient(135deg, #1B4D3E, #2d6a4f);">
@@ -97,6 +98,120 @@
         </div>
     </div>
 </div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0"><i class="fas fa-chart-pie me-2 text-primary"></i>Statut des Articles</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="newsStatusChart" style="max-height: 300px;"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0"><i class="fas fa-chart-line me-2 text-primary"></i>Visites des 30 derniers jours</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="visitChart" style="max-height: 300px;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0"><i class="fas fa-trophy me-2 text-primary"></i>Articles les Plus Vus</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    @foreach($topArticles as $article)
+                    <div class="col-md-2 col-4 mb-3">
+                        <div class="card border-0 shadow-sm text-center h-100">
+                            <div class="card-body">
+                                <div class="text-warning mb-2">
+                                    @for($i = 1; $i <= min($loop->index + 1, 5); $i++)
+                                        <i class="fas fa-star"></i>
+                                    @endfor
+                                </div>
+                                <h6 class="mb-1">{{ Str::limit($article->title, 40) }}</h6>
+                                <p class="text-muted mb-0"><i class="fas fa-eye me-1"></i>{{ $article->views_count }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const newsStatusCtx = document.getElementById('newsStatusChart');
+    if (newsStatusCtx) {
+        new Chart(newsStatusCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Publié', 'Brouillon', 'Programmé'],
+                datasets: [{
+                    data: [{{ $newsStatus['published'] ?? 0 }}, {{ $newsStatus['draft'] ?? 0 }}, {{ $newsStatus['scheduled'] ?? 0 }}],
+                    backgroundColor: ['#28a745', '#dc3545', '#ffc107'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    }
+
+    const visitCtx = document.getElementById('visitChart');
+    if (visitCtx) {
+        const labels = @json($visitChart->pluck('date')->map(fn($d) => \Carbon\Carbon::parse($d)->format('d/m/Y')));
+        const data = @json($visitChart->pluck('total'));
+
+        new Chart(visitCtx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Visites',
+                    data: data,
+                    backgroundColor: 'rgba(27, 77, 62, 0.8)',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    }
+</script>
 
 <div class="row g-4">
     <div class="col-md-8">

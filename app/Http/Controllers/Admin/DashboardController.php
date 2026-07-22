@@ -10,6 +10,7 @@ use App\Models\Slider;
 use App\Models\Testimonial;
 use App\Models\Visit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -31,6 +32,20 @@ class DashboardController extends Controller
             'month' => Visit::whereBetween('visited_at', [now()->subDays(30), now()])->count(),
         ];
 
-        return view('admin.dashboard', compact('stats', 'recentNews', 'visits'));
+        $newsStatus = [
+            'published' => News::where('status', 'published')->count(),
+            'draft' => News::where('status', 'draft')->count(),
+            'scheduled' => News::where('status', 'scheduled')->count(),
+        ];
+
+        $topArticles = News::withCount('views')->orderByDesc('views_count')->limit(5)->get();
+
+        $visitChart = Visit::select(DB::raw('DATE(visited_at) as date'), DB::raw('count(*) as total'))
+            ->whereBetween('visited_at', [now()->subDays(30), now()])
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+
+        return view('admin.dashboard', compact('stats', 'recentNews', 'visits', 'newsStatus', 'topArticles', 'visitChart'));
     }
 }
