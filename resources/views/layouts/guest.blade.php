@@ -6,6 +6,47 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
+        <meta name="description" content="Fondation engagée dans le soutien aux orphelins, l'éducation des jeunes et l'autonomisation économique des femmes afin de bâtir un avenir meilleur pour les communautés.">
+
+        <meta name="keywords" content="fondation, association, ONG, humanitaire, soutien aux orphelins, éducation des jeunes, autonomisation économique de la femme, aide sociale, développement communautaire, Cameroun, solidarité">
+
+        <meta name="author" content="{{ config('app.name') }}">
+        <meta name="robots" content="index, follow">
+        <meta name="language" content="fr">
+        <meta name="revisit-after" content="7 days">
+
+        <!-- Canonical -->
+        <link rel="canonical" href="{{ url()->current() }}">
+
+        <!-- Theme -->
+        <meta name="theme-color" content="#1B4D3E">
+
+        <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+        <meta property="og:type" content="website">
+        <meta property="og:locale" content="fr_FR">
+        <meta property="og:site_name" content="{{ config('app.name') }}">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:title" content="{{ config('app.name') }}">
+        <meta property="og:description" content="Découvrez notre fondation et nos actions en faveur des orphelins, de l'éducation des jeunes et de l'autonomisation économique des femmes.">
+        <meta property="og:image" content="{{ asset('assets/images/logo.png') }}">
+        <meta property="og:image:alt" content="{{ config('app.name') }} - Logo officiel">
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ config('app.name') }}">
+        <meta name="twitter:description" content="Découvrez notre fondation et nos actions en faveur des orphelins, de l'éducation des jeunes et de l'autonomisation économique des femmes.">
+        <meta name="twitter:image" content="{{ asset('assets/images/logo.png') }}">
+
+        <!-- Favicons -->
+        <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
+        <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}">
+        <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.png') }}">
+
+        <!-- Optional -->
+        <meta name="application-name" content="{{ config('app.name') }}">
+        <meta name="apple-mobile-web-app-title" content="{{ config('app.name') }}">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
