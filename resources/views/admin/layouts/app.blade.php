@@ -156,6 +156,9 @@
             <li class="{{ request()->routeIs('admin.visits.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.visits.index') }}"><i class="fas fa-chart-bar"></i>Statistiques</a>
             </li>
+            <li class="{{ request()->routeIs('admin.profile.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.profile.edit') }}"><i class="fas fa-user"></i>Mon Profil</a>
+            </li>
             <li class="mt-4">
                 <a href="{{ route('home') }}" target="_blank"><i class="fas fa-external-link-alt"></i>Voir le Site</a>
             </li>
